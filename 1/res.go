@@ -40,7 +40,6 @@ func search2(data []int) int{
 	}
 	return -1
 }
-
 func main(){
 	dat, err := ioutil.ReadFile("data")
 	check(err)
