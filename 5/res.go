@@ -29,17 +29,6 @@ func check(e error) {
     }
 }
 
-func parse(code string) int{
-	v :=0
-	for i, c := range code{
-		bit := (len(code)-1)-i
-		if c=='B' || c=='R'{
-			v |= 1<<bit
-		}
-	}
-	return v
-}
-
 func decode(code int, b int)int{
 	v:=0
 	for x:=0;x<b;x++{
@@ -56,7 +45,16 @@ func seat(coords int) int{
 	return (row*8)+col
 }
 
-
+func parse(code string) int{
+	v :=0
+	for i, c := range code{
+		bit := (len(code)-1)-i
+		if c=='B' || c=='R'{
+			v |= 1<<bit
+		}
+	}
+	return v
+}
 
 func main(){
 	dat, err := ioutil.ReadFile(`data`)
@@ -66,14 +64,15 @@ func main(){
 	var count []int
 	var m int = 0 
 	for _, pp := range memes2{
-		count = append(count, seat(parse(pp)))
-		m = max(m, seat(parse(pp)))
+		count = append(count, parse(pp))
+		m = max(m, parse(pp))
 	}
 	fmt.Println(m)
 	sort.Ints(count)
 	for i, v:= range count[1:]{
 		if v - count[i]>1{
 			fmt.Println(v-1)
+			break
 		}
 	}
 
