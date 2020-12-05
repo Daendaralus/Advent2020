@@ -11,10 +11,33 @@ import (
 	`sort`
 )
 	
+func max(vars ...int) int {
+    m := vars[0]
+
+    for _, i := range vars {
+        if m < i {
+            m = i
+        }
+    }
+
+    return m
+}
+
 func check(e error) {
     if e != nil {
         panic(e)
     }
+}
+
+func parse(code string) int{
+	v :=0
+	for i, c := range code{
+		bit := (len(code)-1)-i
+		if c=='B' || c=='R'{
+			v |= 1<<bit
+		}
+	}
+	return v
 }
 
 func decode(code int, b int)int{
@@ -33,28 +56,7 @@ func seat(coords int) int{
 	return (row*8)+col
 }
 
-func parse(code string) int{
-	v :=0
-	for i, c := range code{
-		bit := (len(code)-1)-i
-		if c=='B' || c=='R'{
-			v |= 1<<bit
-		}
-	}
-	return v
-}
 
-func max(vars ...int) int {
-    m := vars[0]
-
-    for _, i := range vars {
-        if m < i {
-            m = i
-        }
-    }
-
-    return m
-}
 
 func main(){
 	dat, err := ioutil.ReadFile(`data`)
@@ -69,8 +71,8 @@ func main(){
 	}
 	fmt.Println(m)
 	sort.Ints(count)
-	for i, v:= range count[10:len(count)-10]{
-		if v - count[i+9]>1{
+	for i, v:= range count[1:]{
+		if v - count[i]>1{
 			fmt.Println(v-1)
 		}
 	}
