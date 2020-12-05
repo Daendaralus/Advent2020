@@ -58,7 +58,7 @@ func main(){
 	//var validpp = regexp.MustCompile(`(\d+)-(\d+) (\w): (\w+)`)
 	var preq0 = []string{"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 	var ppreq = []string{`byr:(\d{4})`, `iyr:(\d{4})`, `eyr:(\d{4})`, `hgt:(\d+)(in|cm)`, `hcl:#[a-f, 0-9]{6}`, `ecl:(amb|blu|brn|gry|grn|hzl|oth)`, `pid:(\d{9})\b`}
-	var ppre2 = [][]int{[]int{1920, 2002}, []int{2010, 2020}, []int{2020, 2030}, []int{150,193,59,76}}
+	var ppre2 = [][]int{{1920, 2002}, {2010, 2020}, {2020, 2030}, {150,193,59,76}}
 	dat, err := ioutil.ReadFile(`data`)
 	check(err)
 	var memes = string(dat)
